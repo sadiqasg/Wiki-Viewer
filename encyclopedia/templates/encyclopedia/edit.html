@@ -1,0 +1,21 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block body %}
+
+    <p>Editing {{ title }}</p>
+    <hr/>
+
+    <form action="{% url 'wiki:edit' title %}" method="post" class="d-flex flex-column">
+        {% csrf_token %}
+        {{ form }}
+        <div>
+            <input class="btn-info mt-3 w-25" type="submit" value="Save edit">
+            <button class="btn-danger mt-3 w-25"><a class="text-light" href="{% url 'wiki:wiki_entry' title %}">Cancel</a></button>
+        </div>
+    </form>
+
+{% endblock %}

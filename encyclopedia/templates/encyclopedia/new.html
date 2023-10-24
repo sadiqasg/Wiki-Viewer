@@ -1,0 +1,19 @@
+{% extends 'encyclopedia/layout.html' %}
+
+{% block title %}
+    {{title}}
+{% endblock title %}
+
+{% block body %}
+    <p>New Wiki Entry</p>
+    <hr/>
+    {% if message %}
+        <h6 class="text-danger">{{ message }} !!</h6>
+        <p>You may go to <strong>home</strong> in the left navigation bar to view a list of entries</p>
+    {% endif %}
+    <form action="{% url 'wiki:new' %}" method="post" class="d-flex flex-column">
+        {% csrf_token %}
+        {{ form }}
+        <input class="btn-success mt-3 w-25" type="submit" value="Save">
+    </form>
+{% endblock body %}
